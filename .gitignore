@@ -61,3 +61,9 @@ venv.bak/
 .pyre/
 .idea/*
 .env
+
+# mypy
+.mypy_cache
+
+# Logs
+*.log
