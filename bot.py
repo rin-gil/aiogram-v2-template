@@ -28,16 +28,12 @@ def register_all_handlers(dp: Dispatcher) -> None:
 
 async def main() -> None:
     """Launches the bot"""
-    log.info("Starting bot")
-
     config: Config = load_config(path=".env")
     bot: Bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
     dp: Dispatcher = Dispatcher(bot, storage=MemoryStorage())
     bot["config"] = config
-
     register_all_filters(dp)
     register_all_handlers(dp)
-
     try:  # On starting bot
         await set_default_commands(dp)
         await dp.skip_updates()
@@ -50,9 +46,9 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
+    log.info("Starting bot")
     try:
         run(main())
     except Exception as ex:
         log.error("Unknown error: %s", ex)
-
     log.info("Bot stopped!")
