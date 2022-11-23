@@ -1,9 +1,13 @@
 """Configuration settings for the bot"""
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional
 
 from environs import Env
+
+
+BASE_DIR: Path = Path(__file__).resolve().parent
 
 
 @dataclass
