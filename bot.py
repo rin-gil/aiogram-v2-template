@@ -1,3 +1,5 @@
+"""Launches the bot"""
+
 import asyncio
 import logging
 
@@ -9,13 +11,8 @@ from tgbot.filters.admin import AdminFilter
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.echo import register_echo
 from tgbot.handlers.user import register_user
-from tgbot.middlewares.environment import EnvironmentMiddleware
 
 logger = logging.getLogger(__name__)
-
-
-def register_all_middlewares(dp, config):
-    dp.setup_middleware(EnvironmentMiddleware(config=config))
 
 
 def register_all_filters(dp):
@@ -25,7 +22,6 @@ def register_all_filters(dp):
 def register_all_handlers(dp):
     register_admin(dp)
     register_user(dp)
-
     register_echo(dp)
 
 
@@ -42,7 +38,6 @@ async def main():
 
     bot["config"] = config
 
-    register_all_middlewares(dp, config)
     register_all_filters(dp)
     register_all_handlers(dp)
 
