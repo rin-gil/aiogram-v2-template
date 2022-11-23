@@ -1,6 +1,6 @@
 """Launches the bot"""
 
-import asyncio
+from asyncio import run
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -10,6 +10,7 @@ from tgbot.filters.admin import AdminFilter
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.echo import register_echo
 from tgbot.handlers.user import register_user
+from tgbot.misc.commands import set_default_commands
 from tgbot.misc.logger import log
 
 
@@ -37,10 +38,11 @@ async def main() -> None:
     register_all_filters(dp)
     register_all_handlers(dp)
 
-    # start
-    try:
+    try:  # On starting bot
+        await set_default_commands(dp)
+        await dp.skip_updates()
         await dp.start_polling()
-    finally:
+    finally:  # On stopping bot
         await dp.storage.close()
         await dp.storage.wait_closed()
         session = await bot.get_session()
@@ -49,7 +51,7 @@ async def main() -> None:
 
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        run(main())
     except Exception as ex:
         log.error("Unknown error: %s", ex)
 
