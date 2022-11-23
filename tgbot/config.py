@@ -1,9 +1,8 @@
 """Configuration settings for the bot"""
 
-from dataclasses import dataclass
 from os.path import join
 from pathlib import Path
-from typing import Optional
+from typing import NamedTuple, Optional
 
 from environs import Env
 
@@ -12,8 +11,7 @@ BASE_DIR: Path = Path(__file__).resolve().parent
 LOG_FILE: str = join(BASE_DIR, "tgbot.log")
 
 
-@dataclass
-class DbConfig:
+class DbConfig(NamedTuple):
     """Database configuration"""
 
     host: str
@@ -22,23 +20,20 @@ class DbConfig:
     database: str
 
 
-@dataclass
-class TgBot:
+class TgBot(NamedTuple):
     """Bot data"""
 
     token: str
     admin_ids: tuple[int, ...]
 
 
-@dataclass
-class Miscellaneous:
+class Miscellaneous(NamedTuple):
     """Other settings"""
 
     other_params: Optional[str] = None
 
 
-@dataclass
-class Config:
+class Config(NamedTuple):
     """Bot config"""
 
     tg_bot: TgBot
