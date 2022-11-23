@@ -1,6 +1,7 @@
 """Configuration settings for the bot"""
 
 from dataclasses import dataclass
+from os.path import join
 from pathlib import Path
 from typing import Optional
 
@@ -8,6 +9,7 @@ from environs import Env
 
 
 BASE_DIR: Path = Path(__file__).resolve().parent
+LOG_FILE: str = join(BASE_DIR, "tgbot.log")
 
 
 @dataclass

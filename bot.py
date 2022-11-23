@@ -1,7 +1,6 @@
 """Launches the bot"""
 
 import asyncio
-import logging
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -11,9 +10,7 @@ from tgbot.filters.admin import AdminFilter
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.echo import register_echo
 from tgbot.handlers.user import register_user
-
-
-logger = logging.getLogger(__name__)
+from tgbot.misc.logger import log
 
 
 def register_all_filters(dp: Dispatcher) -> None:
@@ -30,11 +27,7 @@ def register_all_handlers(dp: Dispatcher) -> None:
 
 async def main() -> None:
     """Launches the bot"""
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s",
-    )
-    logger.info("Starting bot")
+    log.info("Starting bot")
 
     config: Config = load_config(path=".env")
     bot: Bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
@@ -57,5 +50,7 @@ async def main() -> None:
 if __name__ == "__main__":
     try:
         asyncio.run(main())
-    except (KeyboardInterrupt, SystemExit):
-        logger.error("Bot stopped!")
+    except Exception as ex:
+        log.error("Unknown error: %s", ex)
+
+    log.info("Bot stopped!")
