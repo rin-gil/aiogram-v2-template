@@ -8,7 +8,7 @@ from environs import Env
 
 
 BASE_DIR: Path = Path(__file__).resolve().parent
-LOG_FILE: str = join(BASE_DIR, "tgbot.log")
+LOG_FILE: str = join(BASE_DIR, "log.log")
 
 
 class DbConfig(NamedTuple):
