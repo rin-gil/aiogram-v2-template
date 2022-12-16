@@ -9,6 +9,7 @@ from tgbot.config import load_config, Config
 from tgbot.filters.admin import AdminFilter
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.echo import register_echo
+from tgbot.handlers.error import register_errors
 from tgbot.handlers.user import register_user
 from tgbot.misc.commands import set_default_commands
 from tgbot.misc.logger import logger
@@ -24,6 +25,7 @@ def register_all_handlers(dp: Dispatcher) -> None:
     register_admin(dp)
     register_user(dp)
     register_echo(dp)
+    register_errors(dp)
 
 
 async def main() -> None:
