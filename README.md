@@ -1,4 +1,4 @@
-## Bot template for 2.12 <= aiogram <3.0
+## Bot template for 2.12 <= aiogram < 3.0
 
 <p align="center">
     <a href="https://www.python.org/downloads/release/python-3100/">
@@ -20,3 +20,9 @@
         <img src="https://github.com/rin-gil/aiogram_template/actions/workflows/codeql.yml/badge.svg" alt="Code tests">
     </a>
 </p>
+
+---
+
+This template is archived in connection with the release of [aiogram 3](https://github.com/aiogram/aiogram)
+
+Template for aiogram 3 is [here](https://github.com/rin-gil/aiogram_v3_template)
